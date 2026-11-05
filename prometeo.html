@@ -1,0 +1,177 @@
+<!doctype html>
+<html lang="es-AR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#0f433b">
+<meta name="description" content="Caso de estudio: plataforma crossborder de payment links y pagos internacionales.">
+<title>Prometeo API — Plataforma crossborder</title>
+<script>if ('IntersectionObserver' in window && !window.matchMedia('(prefers-reduced-motion: reduce)').matches) document.documentElement.classList.add('rv-ready');</script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bitter:wght@400;500;600;700&family=Hanken+Grotesk:wght@400;500;600;700&family=Josefin+Sans:wght@600;700&display=swap" rel="stylesheet">
+<style>
+:root { --ink:#0f433b; --navy:#122d3a; --green:#35645a; --pink:#f5cdc7; --rust:#b9532f; --orange:#ff6734; --coral:#ee8058; --font-heading:'Bitter', Georgia, serif; --font-body:'Hanken Grotesk', Arial, sans-serif; --font-label:'Josefin Sans', sans-serif; }
+*, *::before, *::after { box-sizing:border-box; }
+html { scroll-behavior:smooth; }
+body { margin:0; overflow-x:hidden; color:var(--ink); background:#fff; font-family:var(--font-body); -webkit-font-smoothing:antialiased; }
+a { color:inherit; }
+a:focus-visible { outline:3px solid var(--orange); outline-offset:5px; }
+p { margin:0; }
+.case { color:var(--ink); background:#fff; font:400 18px/28px var(--font-body); }
+.wrap { width:min(1120px, calc(100% - 64px)); margin-inline:auto; }
+.intro { padding:56px 0 84px; color:var(--navy); }
+.back { display:inline-flex; align-items:center; min-height:44px; font-size:15px; text-decoration:none; color:var(--green); }
+.back:hover { text-decoration:underline; text-underline-offset:4px; }
+.intro h1 { margin:0 0 20px; font:600 64px/1.08 var(--font-heading); letter-spacing:-.96px; }
+.intro p { font-size:20px; line-height:30px; }
+.eyebrow { color:var(--rust); text-transform:uppercase; font:700 14px/1.6 var(--font-label); letter-spacing:1.5px; }
+.title { margin:0 0 8px; font:400 34px/1.2 var(--font-heading); letter-spacing:-.3px; }
+.title strong { font-weight:700; }
+.stripe { height:53px; background:
+  repeating-linear-gradient(90deg,#e4714b 0 13px,transparent 13px 53.3px),
+  linear-gradient(90deg,transparent 0 26.6px,#e4714b 26.6px 39.6px,transparent 39.6px) 0 50% / 53.3px 31px repeat-x,
+  linear-gradient(180deg,#f5cdc7 0 18%,#fff 18% 33%,#f5cdc7 33% 67%,#fff 67% 82%,#f5cdc7 82%); }
+.project { padding:44px 0; }
+.project p + p { margin-top:28px; }
+.goal-wrap { position:relative; margin-top:80px; }
+.goal-box { padding:44px 32px 40px; background:var(--ink); color:#fff; border-radius:32px; display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:48px; }
+.goal-box .title { margin-bottom:14px; color:var(--coral); }
+.goal-box p + p { margin-top:28px; }
+.goal-sticker { position:absolute; right:-40px; bottom:-120px; width:150px; height:auto; }
+.strategy { padding:80px 0; }
+.strategy .title { margin-bottom:24px; }
+.step { margin-bottom:36px; }
+.step:last-child { margin-bottom:0; }
+.step h3 { margin:0 0 16px; padding:7px 14px; background:#f2f5f7; color:var(--green); font:600 18px/26px var(--font-body); }
+.solution { padding:44px 0 42px; background:var(--pink); color:var(--navy); }
+.solution .eyebrow { color:var(--navy); }
+.solution .lead { margin-bottom:28px; font-weight:700; }
+.feature { margin-bottom:32px; }
+.feature:last-child { margin-bottom:0; }
+.feature h3 { margin:0 0 8px; font:700 21px/30px var(--font-heading); }
+.shot { display:block; width:100%; height:auto; margin-top:12px; border-radius:16px; }
+.next { padding:80px 0 72px; color:var(--navy); }
+.next-inner { border-top:1px solid #c6d3db; padding-top:40px; display:flex; justify-content:flex-end; }
+.next a { display:inline-flex; align-items:center; min-height:44px; color:var(--orange); font:700 14px/1.6 var(--font-label); letter-spacing:1.5px; text-transform:uppercase; text-decoration:none; }
+.next a:hover { text-decoration:underline; text-underline-offset:4px; }
+@media (max-width:1250px) { .goal-sticker { right:-16px; } }
+@media (max-width:900px) { .goal-box { grid-template-columns:1fr; gap:32px; } }
+@media (max-width:680px) {
+  .case { font-size:17px; line-height:26px; }
+  .wrap { width:calc(100% - 40px); }
+  .intro { padding:28px 0 56px; }
+  .intro h1 { font-size:clamp(38px,10.5vw,52px); }
+  .intro p { font-size:18px; line-height:27px; }
+  .title { font-size:28px; }
+  .goal-wrap { margin-top:56px; }
+  .goal-box { padding:28px 20px; border-radius:24px; }
+  .goal-sticker { right:-4px; bottom:-72px; width:104px; }
+  .strategy { padding:88px 0 56px; }
+  .shot { border-radius:10px; }
+  .next { padding:56px 0; }
+  .next-inner { justify-content:flex-start; }
+}
+@media (prefers-reduced-motion:reduce) { *, *::before, *::after { scroll-behavior:auto!important; } }
+
+/* Texto que sube y aparece al entrar en pantalla */
+@property --rv-p { syntax:'<percentage>'; inherits:false; initial-value:130%; }
+.rv { display:block; }
+.rv-ready .rv:not(.rv-in) { opacity:0; }
+.rv-in { -webkit-mask-image:linear-gradient(to bottom,#000 calc(var(--rv-p) - 30%),transparent var(--rv-p)); mask-image:linear-gradient(to bottom,#000 calc(var(--rv-p) - 30%),transparent var(--rv-p)); animation:rv-sube 1.6s cubic-bezier(.16,1,.3,1) both; }
+@keyframes rv-sube { from { opacity:0; transform:translateY(36px); --rv-p:0%; } to { opacity:1; transform:none; --rv-p:130%; } }
+@media print { .rv-ready .rv:not(.rv-in) { opacity:1; } }
+</style>
+<script src="assets/site.js" defer></script>
+</head>
+<body>
+<main class="case">
+  <header class="intro">
+    <div class="wrap">
+      <a class="back" href="index.html">← Volver</a>
+      <h1><span class="rv">Plataforma crossborder</span></h1>
+      <p><span class="rv">Flujos de payment links y pagos internacionales.</span></p>
+    </div>
+  </header>
+
+  <div class="stripe" aria-hidden="true"></div>
+
+  <section class="project" aria-labelledby="pm-proyecto">
+    <div class="wrap">
+      <p class="eyebrow"><span class="rv">NUEVA SOLUCIÓN</span></p>
+      <h2 class="title" id="pm-proyecto"><span class="rv"><strong>Proyecto:</strong> Qué resolvimos</span></h2>
+      <p><span class="rv">Diseñamos una experiencia que simplifica la <strong>generación y gestión de cobros en Perú y Brasil,</strong> permitiendo a los clientes operar con <strong>múltiples medios de pago y diferentes monedas</strong>, incluyendo la generación de links de pago, desde un entorno ágil y centralizado.</span></p>
+      <p><span class="rv">La solución busca <strong>reducir las fricciones en el proceso de cobro, facilitar la conversión de ventas y mejorar el acceso al dinero</strong>, adaptándose a las necesidades de cada mercado.</span></p>
+    </div>
+  </section>
+
+  <div class="stripe" aria-hidden="true"></div>
+
+  <section class="wrap goal-wrap">
+    <div class="goal-box">
+      <div>
+        <h2 class="title"><span class="rv"><strong>Contexto:</strong> Porqué era necesario</span></h2>
+        <p><span class="rv">El desafío consistía en <strong>ofrecer una experiencia que permitiera gestionar diferentes medios de pago desde un mismo lugar</strong>, contemplando tanto las necesidades operativas de los clientes como los objetivos comerciales del producto.</span></p>
+        <p><span class="rv">En este escenario, trabajamos sobre la experiencia de generación y administración de cobros, buscando identificar oportunidades para simplificar los procesos y facilitar las operaciones cotidianas.</span></p>
+      </div>
+      <div>
+        <h2 class="title"><span class="rv"><strong>Mi rol:</strong> Qué lideré</span></h2>
+        <p><span class="rv">Participé en el diseño de la experiencia de cobros, trabajando en la comprensión de los requerimientos, la definición de flujos y el diseño de interfaces.</span></p>
+        <p><span class="rv">Mi contribución estuvo enfocada en <strong>transformar necesidades del negocio y de los usuarios en soluciones claras y funcionales</strong>, colaborando con el equipo de Producto y Tecnología para asegurar la coherencia de la experiencia y su viabilidad de implementación.</span></p>
+      </div>
+    </div>
+    <img class="goal-sticker" src="assets/img/goal.png" alt="" aria-hidden="true">
+  </section>
+
+  <section class="strategy" aria-labelledby="pm-estrategia">
+    <div class="wrap">
+      <h2 class="title" id="pm-estrategia"><span class="rv"><strong>Estrategia:</strong> Cómo abordamos el problema</span></h2>
+      <div class="step">
+        <h3><span class="rv">01. Comprender la experiencia de cobro</span></h3>
+        <p><span class="rv">Durante el análisis de los pagos presenciales, identificamos un punto de dolor crítico: <strong>los comercios no contaban con un espacio centralizado donde verificar, en tiempo real, si el pago realizado por un cliente había sido acreditado.</strong></span></p>
+        <p><span class="rv">Esta falta de visibilidad generaba incertidumbre al momento de confirmar la operación y autorizar la entrega del producto, afectando tanto la experiencia del comercio como la del comprador.</span></p>
+      </div>
+      <div class="step">
+        <h3><span class="rv">02. Simplificar y centralizar las operaciones</span></h3>
+        <p><span class="rv">Diseñamos una experiencia responsive que permite a los <strong>clientes realizar pagos presenciales mediante el escaneo de un código QR,</strong> mientras que los comercios pueden <strong>consultar el estado de cada transacción en tiempo real desde una plataforma centralizada</strong>.</span></p>
+        <p><span class="rv">Gracias a la <strong>integración con entidades bancarias locales a través de APIs</strong>, logramos conectar el proceso de pago con su seguimiento, reduciendo la incertidumbre al momento de confirmar la operación y liberar la compra.</span></p>
+      </div>
+      <div class="step">
+        <h3><span class="rv">03. Conectar la experiencia con los resultados del negocio</span></h3>
+        <p><span class="rv">Priorizamos la visibilidad del estado de los pagos en tiempo real, integrándola en una experiencia centralizada que permite a los comercios verificar las transacciones y tomar decisiones con mayor agilidad y confianza.</span></p>
+      </div>
+    </div>
+  </section>
+
+  <section class="solution" aria-labelledby="pm-solucion">
+    <div class="wrap">
+      <p class="eyebrow"><span class="rv">NUEVA PROPUESTA</span></p>
+      <h2 class="title" id="pm-solucion"><span class="rv"><strong>Solución:</strong> Qué cambió</span></h2>
+      <p class="lead"><span class="rv">Una experiencia que conecta el momento de cobrar con la certeza de haber recibido el pago.</span></p>
+
+      <div class="feature">
+        <h3><span class="rv">Generación de cobros multidivisa.</span></h3>
+        <p><span class="rv">Diseñamos un flujo para configurar el medio de pago, la cuenta de acreditación y el monto de la operación. La interfaz permite visualizar los importes en la moneda de origen y de destino, facilitando la comprensión del cobro antes de generar el link.</span></p>
+        <img class="shot" src="assets/img/pm-link.jpg" alt="Formulario Generar Payment Link con método de pago, cuenta de acreditación y montos en dos monedas" loading="lazy">
+      </div>
+
+      <div class="feature">
+        <h3><span class="rv">Pagos mediante link y código QR.</span></h3>
+        <p><span class="rv">Simplificamos la instancia de cobro generando un enlace y un código QR que el comercio puede compartir con su cliente. Esto permite iniciar el pago de forma digital, incluso en situaciones de atención presencial.</span></p>
+        <img class="shot" src="assets/img/pm-qr.jpg" alt="Modal Link generado con el monto a pagar, el código QR y el enlace de pago" loading="lazy">
+      </div>
+
+      <div class="feature">
+        <h3><span class="rv">Seguimiento centralizado de las operaciones.</span></h3>
+        <p><span class="rv">Incorporamos una vista de movimientos con información sobre país, moneda, monto y estado de cada transacción. Los filtros y la búsqueda permiten localizar operaciones y consultar su situación desde un mismo lugar, con estados actualizados en vivo.</span></p>
+        <img class="shot" src="assets/img/pm-mov.jpg" alt="Pantalla Saldos y movimientos con saldos por país, filtros y tabla de transacciones con estados" loading="lazy">
+      </div>
+    </div>
+  </section>
+
+  <nav class="next wrap" aria-label="Más proyectos">
+    <div class="next-inner"><a href="index.html">Ver todos los proyectos</a></div>
+  </nav>
+</main>
+</body>
+</html>

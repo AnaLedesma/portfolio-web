@@ -1,0 +1,203 @@
+<!doctype html>
+<html lang="es-AR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#0f433b">
+<meta name="description" content="Caso de estudio: rediseño del módulo de transferencias masivas de Interbanking.">
+<title>Interbanking — Plataforma SaaS</title>
+<script>if ('IntersectionObserver' in window && !window.matchMedia('(prefers-reduced-motion: reduce)').matches) document.documentElement.classList.add('rv-ready');</script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bitter:wght@400;500;600;700&family=Hanken+Grotesk:wght@400;500;600;700&family=Josefin+Sans:wght@600;700&display=swap" rel="stylesheet">
+<style>
+:root { --ink:#0f433b; --green:#35645a; --cream:#f7f2eb; --pink:#f5cdc7; --rust:#b9532f; --orange:#ff6734; --lilac:#e9dfff; --font-heading:'Bitter', Georgia, serif; --font-body:'Hanken Grotesk', Arial, sans-serif; --font-label:'Josefin Sans', sans-serif; }
+*, *::before, *::after { box-sizing:border-box; }
+html { scroll-behavior:smooth; }
+body { margin:0; overflow-x:hidden; color:var(--ink); background:#fff; font-family:var(--font-body); -webkit-font-smoothing:antialiased; }
+a { color:inherit; }
+a:focus-visible { outline:3px solid var(--orange); outline-offset:5px; }
+.case { color:var(--ink); background:#fff; font:400 18px/28px var(--font-body); }
+.wrap { width:min(1120px, calc(100% - 64px)); margin-inline:auto; }
+.intro { padding:56px 0 84px; }
+.back { display:inline-flex; align-items:center; min-height:44px; font-size:15px; text-decoration:none; color:var(--green); }
+.back:hover { text-decoration:underline; text-underline-offset:4px; }
+.intro h1 { margin:0 0 20px; font:600 64px/1.08 var(--font-heading); letter-spacing:-.96px; }
+.intro p { margin:0; font-size:20px; line-height:30px; }
+.eyebrow { margin:0; color:var(--rust); text-transform:uppercase; font:700 14px/1.6 var(--font-label); letter-spacing:1.5px; }
+.title { margin:0 0 8px; font:400 34px/1.2 var(--font-heading); letter-spacing:-.3px; }
+.title strong { font-weight:700; }
+p { margin:0; }
+.project { background:var(--cream); padding:44px 0; }
+.shot { display:block; width:100%; height:auto; border-radius:20px; }
+.project .shot { max-width:892px; margin:16px auto 0; }
+.goal-box { position:relative; margin-top:80px; padding:32px; border:1.5px solid var(--orange); border-radius:32px; display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:48px; }
+.goal-box .title { margin-bottom:14px; }
+.goal-sticker { position:absolute; right:-60px; bottom:-46px; width:150px; height:auto; }
+.stripe { height:53px; margin-top:80px; background:
+  repeating-linear-gradient(90deg,#e4714b 0 13px,transparent 13px 53.3px),
+  linear-gradient(90deg,transparent 0 26.6px,#e4714b 26.6px 39.6px,transparent 39.6px) 0 50% / 53.3px 31px repeat-x,
+  linear-gradient(180deg,#f5cdc7 0 18%,#fff 18% 33%,#f5cdc7 33% 67%,#fff 67% 82%,#f5cdc7 82%); }
+.strategy { padding:44px 0 0; }
+.flow { margin-bottom:36px; }
+.step { margin-bottom:36px; }
+.step h3 { margin:0 0 16px; padding:7px 20px; background:var(--cream); color:var(--green); font:600 18px/26px var(--font-body); }
+.step ul { margin:0; padding-left:27px; }
+.step li::marker { color:var(--green); }
+.quotes { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:18px 40px; align-items:start; }
+.quote { margin:0; display:flex; gap:14px; align-items:center; }
+.quote img { flex:none; width:46px; height:46px; border-radius:50%; object-fit:cover; }
+.quote blockquote { margin:0; padding:8px 10px; background:#f4f4f4; font:italic 400 15px/21px var(--font-body); }
+.quote cite { font-style:italic; }
+.solution { margin-top:80px; padding:44px 0 42px; background:var(--ink); color:#fff; }
+.solution .eyebrow { color:var(--orange); }
+.solution > .wrap > p { margin-bottom:28px; }
+.feature { margin-bottom:32px; }
+.feature:last-child { margin-bottom:0; }
+.feature h3 { margin:0 0 4px; color:var(--pink); font:400 21px/30px var(--font-heading); }
+.feature h3 strong { font-weight:700; }
+.feature .shot { margin-top:12px; background:var(--lilac); }
+.next { padding:80px 0 72px; }
+.next-inner { border-top:1px solid #c9d0ce; padding-top:40px; display:flex; justify-content:flex-end; }
+.next a { display:inline-flex; align-items:center; min-height:44px; color:var(--orange); font:700 14px/1.6 var(--font-label); letter-spacing:1.5px; text-transform:uppercase; text-decoration:none; }
+.next a:hover { text-decoration:underline; text-underline-offset:4px; }
+@media (max-width:1250px) { .goal-sticker { right:-20px; } }
+@media (max-width:900px) {
+  .quotes { grid-template-columns:1fr; }
+  .goal-box { grid-template-columns:1fr; gap:32px; padding-bottom:64px; }
+}
+@media (max-width:680px) {
+  .case { font-size:17px; line-height:26px; }
+  .wrap { width:calc(100% - 40px); }
+  .intro { padding:28px 0 56px; }
+  .intro h1 { font-size:clamp(40px,11vw,52px); }
+  .intro p { font-size:18px; line-height:27px; }
+  .title { font-size:28px; }
+  .shot { border-radius:12px; }
+  .goal-box { margin-top:56px; padding:24px 20px 64px; border-radius:24px; }
+  .goal-sticker { right:-4px; bottom:-40px; width:112px; }
+  .stripe { margin-top:64px; }
+  .step h3 { padding:7px 14px; }
+  .solution { margin-top:56px; }
+  .next { padding:56px 0; }
+  .next-inner { justify-content:flex-start; }
+}
+@media (prefers-reduced-motion:reduce) { *, *::before, *::after { scroll-behavior:auto!important; } }
+
+/* Texto que sube y aparece al entrar en pantalla */
+@property --rv-p { syntax:'<percentage>'; inherits:false; initial-value:130%; }
+.rv { display:block; }
+.rv-ready .rv:not(.rv-in) { opacity:0; }
+.rv-in { -webkit-mask-image:linear-gradient(to bottom,#000 calc(var(--rv-p) - 30%),transparent var(--rv-p)); mask-image:linear-gradient(to bottom,#000 calc(var(--rv-p) - 30%),transparent var(--rv-p)); animation:rv-sube 1.6s cubic-bezier(.16,1,.3,1) both; }
+@keyframes rv-sube { from { opacity:0; transform:translateY(36px); --rv-p:0%; } to { opacity:1; transform:none; --rv-p:130%; } }
+@media print { .rv-ready .rv:not(.rv-in) { opacity:1; } }
+</style>
+<script src="assets/site.js" defer></script>
+</head>
+<body>
+<main class="case">
+  <header class="intro">
+    <div class="wrap">
+      <a class="back" href="index.html">← Volver</a>
+      <h1><span class="rv">Plataforma SaaS</span></h1>
+      <p><span class="rv">Diseño integral del módulo de transferencias masivas.</span></p>
+    </div>
+  </header>
+
+  <section class="project" aria-labelledby="ib-proyecto">
+    <div class="wrap">
+      <p class="eyebrow"><span class="rv">LEGACY REDISEÑADO</span></p>
+      <h2 class="title" id="ib-proyecto"><span class="rv"><strong>Proyecto:</strong> Qué resolvimos</span></h2>
+      <p><span class="rv">Rediseñamos la experiencia de <strong>transferencias masivas</strong> mediante archivo, simplificando procesos manuales y permitiendo ejecutar múltiples transferencias para una misma fecha y hora, especialmente para el pago de sueldos.</span></p>
+      <img class="shot" src="assets/img/legacy-hq.jpg" alt="Formulario legacy de carga de archivo, con múltiples campos y selectores">
+    </div>
+  </section>
+
+  <section class="wrap">
+    <div class="goal-box">
+      <div>
+        <h2 class="title"><span class="rv"><strong>Contexto:</strong> Porqué era necesario</span></h2>
+        <p><span class="rv">La complejidad y la cantidad de pasos para realizar transferencias masivas llevaba a los usuarios a elegir otras plataformas, <strong>reduciendo el uso del producto y aumentando la baja hacia planes de menor consumo.</strong></span></p>
+      </div>
+      <div>
+        <h2 class="title"><span class="rv"><strong>Mi rol:</strong> Qué lideré</span></h2>
+        <p><span class="rv">Lideré el análisis y rediseño de la experiencia, identificando las fricciones detrás de los “muchos pasos” reportados por los usuarios. Junto a negocio y tecnología, simplificamos la funcionalidad con el objetivo <strong>de mejorar su adopción y aumentar el billing promedio.</strong></span></p>
+      </div>
+      <img class="goal-sticker" src="assets/img/goal.png" alt="" aria-hidden="true">
+    </div>
+  </section>
+
+  <div class="stripe" aria-hidden="true"></div>
+
+  <section class="strategy" aria-labelledby="ib-estrategia">
+    <div class="wrap">
+      <h2 class="title" id="ib-estrategia"><span class="rv"><strong>Estrategia:</strong> Cómo abordamos el problema</span></h2>
+      <p class="flow"><span class="rv">Quejas de usuarios → Análisis del flujo → Priorización → Rediseño → Validación</span></p>
+
+      <div class="step">
+        <h3><span class="rv">1. Quejas de usuarios</span></h3>
+        <div class="quotes">
+          <figure class="quote"><img src="assets/img/av-vanesa.jpg" alt=""><blockquote><span class="rv">“No es <strong>intuitivo</strong> ni <strong>muy amigable</strong> a lo que era antes... <strong>tenés que leer</strong> y mirar bien para decir si lo hice bien o no.” <cite>Vanesa</cite></span></blockquote></figure>
+          <figure class="quote"><img src="assets/img/av-roberto.jpg" alt=""><blockquote><span class="rv">“<strong>Este paso no vale la pena</strong>, la información ya la vi antes. <strong>Avanzaría directo a autorizar.</strong>” <cite>Roberto</cite></span></blockquote></figure>
+          <figure class="quote"><img src="assets/img/av-claudia.jpg" alt=""><blockquote><span class="rv">“...cuando cambiaron de la otra a esta, es como que <strong>me costó acostumbrarme</strong>... ya pasamos por <strong>tres pantallas</strong> diferentes y no lo terminamos todavía... <strong>no sabía qué tenía que hacer para seguir.</strong>” <cite>Claudia</cite></span></blockquote></figure>
+          <figure class="quote"><img src="assets/img/av-vanesa.jpg" alt=""><blockquote><span class="rv">“Antes veíamos <strong>de qué cuenta a quién en un renglón. Acá solo veo cuenta de origen</strong>; si no estoy segura <strong>tengo que ir y volver.</strong> Si no estoy segura de a quién le pago, tengo que confirmar y volver atrás para chequear.” <cite>Vanesa</cite></span></blockquote></figure>
+        </div>
+      </div>
+
+      <div class="step">
+        <h3><span class="rv">2. Análisis del flujo</span></h3>
+        <p><span class="rv">Las personas usuarias que operan <strong>transferencias de manera frecuente</strong>, muchas veces bajo presión de tiempo y manejando altos volúmenes, <strong>necesitan que el proceso sea rápido y eficiente, pero sin perder la visibilidad de la información crítica</strong> que les permite validar cada operación con seguridad.</span></p>
+      </div>
+
+      <div class="step">
+        <h3><span class="rv">3. Priorización</span></h3>
+        <p><span class="rv">Para cumplir con el deadline y educar a los usuarios con la nueva experiencia, se decidió avanzar con las siguientes funcionalidades:</span></p>
+        <ul>
+          <li><span class="rv">Limitar a subir 1 solo archivo.</span></li>
+          <li><span class="rv">Solo se permite subir un tipo de TEF por archivo.</span></li>
+          <li><span class="rv">Nuevo micro frond-end: permite usar nuevo DS en el flujo.</span></li>
+          <li><span class="rv">Permisos del operador: modificar datos, tipo de TEFs, etc.</span></li>
+        </ul>
+      </div>
+
+      <div class="step" style="margin-bottom: 0">
+        <h3><span class="rv">4. Rediseño</span></h3>
+        <p><span class="rv">Se tomo como estructura el sistema que se venia utilizando para que el cambio de experiencia no sea radical y la curva de adopción sea mucho mas rápida.</span></p>
+      </div>
+    </div>
+  </section>
+
+  <div class="stripe" style="margin-top: 36px" aria-hidden="true"></div>
+
+  <section class="solution" aria-labelledby="ib-solucion">
+    <div class="wrap">
+      <p class="eyebrow" style="margin-bottom: 0"><span class="rv">NUEVA PROPUESTA</span></p>
+      <h2 class="title" id="ib-solucion"><span class="rv"><strong>Solución:</strong> Qué cambió</span></h2>
+      <p><span class="rv"><strong>Reducimos la experiencia completa a 3 pasos</strong> y centralizamos el proceso en un flujo más claro.</span></p>
+
+      <div class="feature">
+        <h3><span class="rv"><strong>3 pasos:</strong> Una experiencia guiada</span></h3>
+        <p><span class="rv">Se reorganizó la información mediante una jerarquía progresiva, desde lo general hacia lo particular, priorizando la claridad del contenido y la identificación de los campos obligatorios para avanzar en el proceso.</span></p>
+        <img class="shot" src="assets/img/paso1-hq.jpg" alt="Pantalla de confección desde archivo con el stepper de 3 pasos y el formulario de datos" loading="lazy">
+      </div>
+
+      <div class="feature">
+        <h3><span class="rv"><strong>Visibilidad del proceso:</strong> Reducir la incertidumbre en momentos críticos</span></h3>
+        <p><span class="rv">Durante la validación del archivo de transferencias, incorporamos un indicador de progreso y mensajes de estado para comunicar que el sistema está procesando la información. Esta decisión busca reducir la incertidumbre, transmitir confianza y brindar mayor tranquilidad al usuario en una operación financiera sensible.</span></p>
+        <img class="shot" src="assets/img/paso2-hq.jpg" alt="Pantalla con el indicador de progreso y el mensaje Estamos validando tu archivo" loading="lazy">
+      </div>
+
+      <div class="feature">
+        <h3><span class="rv"><strong>Resumen claro:</strong> Decisiones informadas antes de una acción irreversible.</span></h3>
+        <p><span class="rv">Diseñamos una instancia de revisión que permite visualizar los resultados del procesamiento, diferenciando las transferencias listas para confeccionar de aquellas que presentan errores. Esta jerarquización de la información busca facilitar la identificación de inconsistencias, brindar mayor control sobre la operación y permitir que el usuario avance con confianza.</span></p>
+        <img class="shot" src="assets/img/paso3-hq.jpg" alt="Resumen del procesamiento con las transferencias listas para confeccionar y el informe de errores" loading="lazy">
+      </div>
+    </div>
+  </section>
+
+  <nav class="next wrap" aria-label="Más proyectos">
+    <div class="next-inner"><a href="index.html">Ver todos los proyectos</a></div>
+  </nav>
+</main>
+</body>
+</html>

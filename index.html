@@ -1,0 +1,306 @@
+<!doctype html>
+<html lang="es-AR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#0f433b">
+<meta name="description" content="Portfolio de Ana Ledesma. Diseño de productos digitales inteligentes, simples y escalables.">
+<title>Ana Ledesma — Product Designer &amp; AI Designer</title>
+<script>if ('IntersectionObserver' in window && !window.matchMedia('(prefers-reduced-motion: reduce)').matches) document.documentElement.classList.add('rv-ready');</script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bitter:wght@400;500;600&amp;family=Gochi+Hand&amp;family=Hanken+Grotesk:wght@400;500;600;700&amp;family=Josefin+Sans:wght@600;700&amp;display=swap" rel="stylesheet">
+<style>
+:root { --ink:#0f433b; --green:#35645a; --sage:#7da391; --cream:#f7f2eb; --pink:#f5cdc7; --rust:#b9532f; --orange:#ff6734; --sand:#ece7b8; --yellow:#d1c96b; --muted:#3f625c; --pale:#e6efed; --font-heading:'Bitter', Georgia, serif; --font-body:'Hanken Grotesk', Arial, sans-serif; --font-label:'Josefin Sans', sans-serif; }
+*, *::before, *::after { box-sizing:border-box; }
+html { scroll-behavior:smooth; }
+body { margin:0; overflow-x:hidden; color:var(--ink); background:var(--cream); font-family:var(--font-body); -webkit-font-smoothing:antialiased; }
+.page { color:var(--ink); background:var(--cream); font-family:var(--font-body); }
+button, a { -webkit-tap-highlight-color:transparent; }
+a { color:inherit; }
+a:focus-visible, button:focus-visible { outline:3px solid var(--orange); outline-offset:5px; }
+.container { width:min(1136px, calc(100% - 64px)); margin-inline:auto; }
+.eyebrow { margin:0; color:var(--rust); text-transform:uppercase; font:700 14px/1.6 var(--font-label); letter-spacing:1.5px; }
+.ph { width:100%; height:100%; display:flex; align-items:center; justify-content:center; padding:16px; text-align:center; background:#e9e8df; color:var(--muted); font:500 14px/1.4 var(--font-body); }
+.hero { width:100%; max-width:1440px; margin-inline:auto; min-height:780px; background:#fff; display:grid; grid-template-columns:1fr 1fr; }
+.hero-copy { min-height:780px; position:relative; display:flex; align-items:center; justify-content:center; text-align:center; padding:140px 44px 96px; }
+.brand { position:absolute; top:28px; left:32px; margin:0; font:700 34px/1.6 var(--font-label); letter-spacing:-.5px; text-decoration:none; }
+.hero-message { max-width:440px; display:flex; flex-direction:column; gap:24px; align-items:center; }
+.hero-message h1 { margin:0; font:500 44px/1.08 var(--font-heading); letter-spacing:-.66px; }
+.hero-message p { margin:0; font:400 17px/24px var(--font-body); }
+.btn { display:inline-flex; align-items:center; justify-content:center; text-align:center; text-decoration:none; font:700 14px/1.6 var(--font-label); letter-spacing:1.5px; cursor:pointer; transition:transform .18s, background-color .18s; }
+.btn:hover { transform:translateY(-2px); }
+.btn-primary { background:var(--orange); color:#fff; border:0; border-radius:22px; height:58px; min-width:180px; padding:0 23px; }
+.hero-art { min-height:780px; position:relative; isolation:isolate; overflow:hidden; background:repeating-linear-gradient(90deg,var(--green) 0 22px,var(--sage) 22px 44px); }
+.polaroid { position:absolute; width:340px; height:476px; top:152px; left:50%; transform:translateX(-50%); background:#fff; padding:18px; }
+.handwritten-note { position:absolute; left:calc(50% + 2px); top:612px; width:250px; min-height:110px; transform:rotate(-7deg); border-radius:14px; background:#fff; padding:13px 18px; box-shadow:0 3px 5px #174b3e15; }
+.handwritten-note p { margin:0; font:400 22px/1.2 'Gochi Hand', cursive; text-align:center; }
+.ticker { height:68px; overflow:hidden; display:flex; align-items:center; background:var(--pink); color:var(--rust); }
+.ticker-track { width:max-content; display:flex; gap:42px; padding-right:42px; white-space:nowrap; font:700 15px/24px var(--font-label); letter-spacing:1.5px; animation:ticker-scroll 60s linear infinite; }
+@keyframes ticker-scroll { from { transform:translateX(0); } to { transform:translateX(-50%); } }
+.ticker-track span { display:block; }
+.work { background:#fff; padding:120px max(32px, calc((100% - 1200px) / 2)) 80px; }
+.work-header { width:100%; margin:0 0 96px; }
+.work-header h2 { font:500 40px/1.08 var(--font-heading); letter-spacing:-.6px; margin:4px 0 0; }
+.projects-grid { display:grid; grid-template-columns:1fr 1fr; column-gap:119px; align-items:start; }
+.project-column { display:flex; flex-direction:column; gap:123px; }
+.project-column--offset { padding-top:157px; }
+.project { margin:0; width:100%; }
+.project-link { display:block; color:inherit; text-decoration:none; cursor:pointer; }
+.project-image { position:relative; width:100%; overflow:hidden; background:#e9e8df; }
+.project-image img { display:block; width:100%; height:auto; }
+.project-image img.project-hover { position:absolute; inset:0; height:100%; object-fit:cover; opacity:0; transition:opacity .5s; }
+@media (hover:hover) { .project:hover .project-hover { opacity:1; } }
+.project-image .ph { height:auto; aspect-ratio:540 / 554; }
+.project-caption { margin-top:24px; padding:0 0 1px; min-height:32px; display:flex; align-items:center; justify-content:space-between; gap:16px; border-bottom:1px solid var(--ink); font-size:16px; line-height:30.4px; }
+.project-caption strong { font-weight:700; min-width:0; }
+.project-caption span { white-space:nowrap; font-weight:400; }
+.approach { padding:120px 0; background:var(--cream); }
+.approach h2 { max-width:820px; margin:12px 0 56px; font:500 52px/1.08 var(--font-heading); letter-spacing:-.78px; }
+.principles { display:grid; grid-template-columns:repeat(4,minmax(0,1fr)); gap:24px; }
+.principle { border-top:1.5px solid var(--ink); padding-top:20px; }
+.principle-number { margin:0 0 10px; font:400 28px/1.6 var(--font-heading); color:var(--rust); }
+.principle h3 { margin:0 0 10px; font:600 19px/1.6 var(--font-body); }
+.principle p:last-child { margin:0; font:400 15px/24px var(--font-body); color:var(--muted); }
+.about { background:var(--ink); color:var(--cream); padding:112px max(32px, calc((100% - 1136px) / 2)); }
+.about-inner { display:grid; grid-template-columns:492px minmax(0,1fr); gap:72px; align-items:center; max-width:1136px; margin:auto; }
+.about-image { width:100%; background:#1f574e; border-radius:28px; overflow:hidden; }
+.about-image img { display:block; width:100%; height:auto; }
+.about .eyebrow { color:var(--pink); }
+.about-copy h2 { margin:24px 0; font:500 52px/1.08 var(--font-heading); letter-spacing:-.78px; }
+.about-copy h2 em { font-style:normal; color:#f5cec4; }
+.about-copy > p:last-child { margin:0; color:var(--pale); font-size:18px; line-height:28.8px; }
+.skills { padding:120px 0; }
+.skills h2 { margin:0 0 48px; font:500 64px/1.08 var(--font-heading); letter-spacing:-.96px; }
+.skills h2 span { color:var(--rust); }
+.skill-cards { display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:24px; align-items:start; }
+.skill-card { border-radius:24px; padding:32px; min-width:0; }
+.skill-card:nth-child(1) { background:var(--pink); }
+.skill-card:nth-child(2) { background:var(--sand); }
+.skill-card:nth-child(3) { background:var(--yellow); }
+.skill-card h3 { margin:0 0 20px; font:500 32px/1.08 var(--font-heading); letter-spacing:-.48px; }
+.chips { display:flex; flex-wrap:wrap; gap:8px; }
+.chip { background:#fff; border-radius:999px; padding:7px 14px; font:500 14px/22.4px var(--font-body); white-space:nowrap; }
+.contact { padding:0 0 96px; }
+.contact-box { border-radius:36px; background:var(--pink); padding:88px 56px; display:flex; flex-direction:column; align-items:center; gap:28px; text-align:center; }
+.contact h2 { margin:0; font:500 80px/1.08 var(--font-heading); letter-spacing:-1.2px; }
+.contact .description { max-width:520px; font:400 19px/30.4px var(--font-body); margin:0; }
+.email-link { text-decoration:none; font:400 40px/1.6 var(--font-heading); overflow-wrap:anywhere; }
+.email-link:hover { text-decoration:underline; text-underline-offset:5px; }
+.contact-actions { display:flex; flex-wrap:wrap; justify-content:center; gap:12px; padding-top:8px; }
+.btn-pill { height:52px; min-width:152px; border-radius:99px; padding:0 24px; background:var(--orange); color:#fff; border:0; }
+.btn-outline { min-width:226px; gap:10px; }
+.btn-outline svg { width:18px; height:18px; }
+.footer { border-top:1px solid var(--sand); padding:28px 0 48px; display:flex; justify-content:space-between; gap:24px; color:var(--muted); font-size:14px; line-height:22.4px; }
+.footer p { margin:0; }
+.toast { position:fixed; z-index:10; bottom:22px; left:50%; transform:translate(-50%,120px); padding:13px 18px; background:var(--ink); color:white; border-radius:12px; font-size:14px; box-shadow:0 8px 30px #0002; transition:transform .2s ease; text-align:center; max-width:calc(100% - 24px); }
+.toast.visible { transform:translate(-50%,0); }
+.to-top { position:fixed; z-index:9; right:24px; bottom:112px; width:56px; height:56px; border-radius:50%; border:2px solid var(--orange); display:flex; align-items:center; justify-content:center; background:transparent; color:var(--orange); opacity:0; visibility:hidden; transform:translateY(12px); transition:opacity .25s, transform .25s, visibility .25s, background-color .2s; }
+.to-top.visible { opacity:1; visibility:visible; transform:none; }
+.to-top.visible:hover { transform:translateY(-2px); background:rgba(255,103,52,.1); }
+.to-top svg { width:24px; height:24px; }
+@media (max-width:680px) { .to-top { right:16px; bottom:104px; } }
+@media (min-width:1441px) { .work { padding-left:calc((100% - 1200px)/2); padding-right:calc((100% - 1200px)/2); } }
+@media (max-width:1250px) {
+  .hero, .hero-copy, .hero-art { min-height:700px; }
+  .hero-message h1 { font-size:clamp(34px,3.4vw,44px); }
+  .hero-copy { padding:120px 32px 70px; }
+  .hero-art .polaroid { top:120px; }
+  .hero-art .handwritten-note { top:580px; }
+  .projects-grid { gap:7vw; }
+  .about-inner { grid-template-columns:minmax(0,44%) minmax(0,1fr); gap:6%; }
+  .about-copy h2 { font-size:clamp(35px,4vw,52px); }
+  .skill-card { padding:25px; }
+  .chip { font-size:13px; padding:6px 11px; }
+}
+@media (max-width:900px) {
+  .hero, .hero-copy, .hero-art { min-height:630px; }
+  .hero .brand { font-size:28px; }
+  .hero-message h1 { font-size:34px; }
+  .hero-message p { font-size:15px; }
+  .polaroid { width:min(80%,320px); height:420px; top:110px!important; }
+  .hero-art .handwritten-note { top:510px; left:45%; }
+  .work { padding:90px 32px; }
+  .projects-grid { gap:32px; }
+  .project-caption { font-size:14px; }
+  .approach { padding:90px 0; }
+  .principles { grid-template-columns:repeat(2,1fr); gap:35px 24px; }
+  .about { padding:90px 32px; }
+  .skills { padding:90px 0; }
+  .skill-cards { gap:16px; }
+  .skill-card h3 { font-size:25px; }
+  .skill-card { padding:22px; }
+}
+@media (max-width:680px) {
+  .container { width:calc(100% - 40px); }
+  .hero { display:flex; flex-direction:column; }
+  .hero-copy { min-height:620px; padding:128px 28px 75px; }
+  .brand { top:20px; left:20px; font-size:29px!important; }
+  .hero-message { max-width:460px; }
+  .hero-message h1 { font-size:clamp(34px,9vw,44px); }
+  .hero-message p { font-size:16px; line-height:25px; }
+  .hero-art { min-height:600px; }
+  .hero-art .polaroid { width:min(340px,70vw); height:min(476px,95vw); top:55px!important; }
+  .hero-art .handwritten-note { top:auto!important; bottom:25px; left:calc(50% + 10px); transform:translateX(-10%) rotate(-7deg); width:min(230px,52vw); }
+  .handwritten-note p { font-size:19px; }
+  .ticker { height:62px; }
+  .ticker-track { font-size:12px; }
+  .work { padding:75px 20px 95px; }
+  .work-header { margin-bottom:38px; }
+  .work-header h2 { font-size:37px; }
+  .projects-grid { display:flex; flex-direction:column; gap:60px; }
+  .project-column { display:contents; }
+  .project-column--offset { padding-top:0; }
+  .project { margin:0; }
+  [data-project="clack"] { order:1; }
+  [data-project="interbanking"] { order:2; }
+  [data-project="prometeo"] { order:3; }
+  [data-project="grupo-carreras"] { order:4; }
+  .project-caption { margin-top:15px; gap:10px; font-size:13px; line-height:1.5; padding-bottom:10px; align-items:start; }
+  .project-caption span { text-align:right; }
+  .approach { padding:85px 0; }
+  .approach h2 { font-size:clamp(35px,9vw,48px); line-height:1.13; margin:12px 0 42px; }
+  .principles { grid-template-columns:1fr 1fr; gap:30px 16px; }
+  .principle h3 { font-size:17px; line-height:1.3; }
+  .principle p:last-child { font-size:14px; line-height:21px; }
+  .about { padding:70px 20px; }
+  .about-inner { display:flex; flex-direction:column; gap:42px; }
+  .about-copy h2 { font-size:clamp(36px,9.2vw,52px); margin:18px 0 22px; }
+  .about-copy > p:last-child { font-size:17px; line-height:27px; }
+  .skills { padding:85px 0; }
+  .skills h2 { font-size:48px; }
+  .skill-cards { grid-template-columns:1fr; gap:16px; }
+  .skill-card { padding:28px; }
+  .skill-card h3 { font-size:30px; }
+  .chip { font-size:14px; padding:7px 14px; }
+  .contact { padding-bottom:70px; }
+  .contact-box { padding:60px 20px; border-radius:26px; gap:23px; }
+  .contact h2 { font-size:clamp(48px,11vw,72px); }
+  .contact .description { font-size:17px; line-height:26px; }
+  .email-link { font-size:clamp(23px,5.8vw,38px); }
+  .contact-actions { gap:10px; }
+  .btn-pill { min-width:0; }
+  .footer { padding:25px 0 35px; flex-direction:column; gap:8px; font-size:12px; }
+}
+@media (prefers-reduced-motion:reduce) { *, *::before, *::after { scroll-behavior:auto!important; transition:none!important; animation:none!important; } }
+
+/* Texto que sube y aparece al entrar en pantalla */
+@property --rv-p { syntax:'<percentage>'; inherits:false; initial-value:130%; }
+.rv { display:block; }
+.rv-ready .rv:not(.rv-in) { opacity:0; }
+.rv-in { -webkit-mask-image:linear-gradient(to bottom,#000 calc(var(--rv-p) - 30%),transparent var(--rv-p)); mask-image:linear-gradient(to bottom,#000 calc(var(--rv-p) - 30%),transparent var(--rv-p)); animation:rv-sube 1.6s cubic-bezier(.16,1,.3,1) both; }
+@keyframes rv-sube { from { opacity:0; transform:translateY(36px); --rv-p:0%; } to { opacity:1; transform:none; --rv-p:130%; } }
+@media print { .rv-ready .rv:not(.rv-in) { opacity:1; } }
+</style>
+<script src="assets/site.js" defer></script>
+</head>
+<body>
+<div class="page">
+<main id="inicio">
+  <section class="hero" aria-labelledby="hero-heading">
+    <div class="hero-copy">
+      <a class="brand" href="#inicio" aria-label="Ana Ledesma, ir al inicio">Ana Ledesma</a>
+      <div class="hero-message">
+        <h1 id="hero-heading"><span class="rv">Transformo problemas complejos en productos simples y escalables.</span></h1>
+        <p><span class="rv">Product Designer &amp; AI Designer. Más de 6 años transformando desafíos complejos en experiencias digitales intuitivas, integrando inteligencia artificial, necesidades de las personas y objetivos de negocio.</span></p>
+        <a class="btn btn-primary" href="#contacto">HABLEMOS :)</a>
+      </div>
+    </div>
+    <div class="hero-art">
+      <div class="polaroid"><img src="assets/img/foto-hero.jpg" alt="Ana frente al puente Golden Gate" style="display: block; width: 100%; height: 100%; object-fit: cover; object-position: center center"></div>
+      <div class="handwritten-note"><p>Hago simple lo complejo. Diseño para escalar.</p></div>
+    </div>
+  </section>
+
+  <div class="ticker" aria-label="Estrategia, UX e identidad visual">
+    <div class="ticker-track" aria-hidden="true">
+      <span>ESTRATEGIA + UX + IDENTIDAD VISUAL = EXPERIENCIAS QUE GENERAN IMPACTO</span>
+      <span>ESTRATEGIA + UX + IDENTIDAD VISUAL = EXPERIENCIAS QUE GENERAN IMPACTO</span>
+      <span>ESTRATEGIA + UX + IDENTIDAD VISUAL = EXPERIENCIAS QUE GENERAN IMPACTO</span>
+      <span>ESTRATEGIA + UX + IDENTIDAD VISUAL = EXPERIENCIAS QUE GENERAN IMPACTO</span>
+      <span>ESTRATEGIA + UX + IDENTIDAD VISUAL = EXPERIENCIAS QUE GENERAN IMPACTO</span>
+      <span>ESTRATEGIA + UX + IDENTIDAD VISUAL = EXPERIENCIAS QUE GENERAN IMPACTO</span>
+      <span>ESTRATEGIA + UX + IDENTIDAD VISUAL = EXPERIENCIAS QUE GENERAN IMPACTO</span>
+      <span>ESTRATEGIA + UX + IDENTIDAD VISUAL = EXPERIENCIAS QUE GENERAN IMPACTO</span>
+    </div>
+  </div>
+
+  <section class="work" id="proyectos" aria-labelledby="proyectos-heading">
+    <div class="work-header"><p class="eyebrow"><span class="rv">CÓMO TRABAJO</span></p><h2 id="proyectos-heading"><span class="rv">Proyectos destacados:</span></h2></div>
+    <div class="projects-grid">
+      <div class="project-column project-column--offset">
+        <article class="project" data-project="interbanking">
+          <a class="project-link" href="interbanking.html"><div class="project-image"><img src="assets/img/interbanking.jpg" alt="Notebook con la plataforma SaaS de transferencias masivas de Interbanking" loading="lazy"><img class="project-hover" src="assets/img/interbanking-hover.jpg" alt="Formulario de datos de las transferencias en la plataforma de Interbanking" loading="lazy"></div>
+          <div class="project-caption"><strong>Plataforma Saas transferencias masivas</strong><span>Interbanking</span></div></a>
+        </article>
+        <article class="project" data-project="grupo-carreras">
+          <a class="project-link" href="grupo-carreras.html"><div class="project-image"><img src="assets/img/grupo-carreras.jpg" alt="App de logística para choferes visualizada en un teléfono" loading="lazy"><img class="project-hover" src="assets/img/grupo-carreras-hover.jpg" alt="Selector de solicitudes de repostaje y parking en la app de logística" loading="lazy"></div>
+          <div class="project-caption"><strong>App de logística</strong><span>Grupo Carreras</span></div></a>
+        </article>
+      </div>
+      <div class="project-column">
+        <article class="project" data-project="clack">
+          <a class="project-link" href="clack.html"><div class="project-image"><img src="assets/img/clack.jpg" alt="Plataforma de ventas Clack en una tablet" loading="lazy"><img class="project-hover" src="assets/img/clack-hover.jpg" alt="Pantalla de caja por turno de la plataforma Clack en una tablet" loading="lazy"></div>
+          <div class="project-caption"><strong>Plataforma de ventas</strong><span>Clack</span></div></a>
+        </article>
+        <article class="project" data-project="prometeo">
+          <a class="project-link" href="prometeo.html"><div class="project-image"><img src="assets/img/prometeo.jpg" alt="Plataforma de pagos Prometeo API en una pantalla de comercio" loading="lazy"><img class="project-hover" src="assets/img/prometeo-hover.jpg" alt="Pantalla de saldos y movimientos de Prometeo API" loading="lazy"></div>
+          <div class="project-caption"><strong>Plataforma de pagos</strong><span>Prometeo API</span></div></a>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <section class="approach" id="metodologia" aria-labelledby="metodologia-heading">
+    <div class="container">
+      <p class="eyebrow"><span class="rv">CÓMO TRABAJO</span></p>
+      <h2 id="metodologia-heading"><span class="rv">Una mezcla de creatividad, empatía e insights basados en datos.</span></h2>
+      <div class="principles">
+        <div class="principle"><p class="principle-number"><span class="rv">01</span></p><h3><span class="rv">Enfoque en el usuario</span></h3><p><span class="rv">Las decisiones parten de entender a quién le diseño y qué necesita.</span></p></div>
+        <div class="principle"><p class="principle-number"><span class="rv">02</span></p><h3><span class="rv">Diseño basado en investigación</span></h3><p><span class="rv">Investigo, valido y uso datos para no diseñar a ciegas.</span></p></div>
+        <div class="principle"><p class="principle-number"><span class="rv">03</span></p><h3><span class="rv">Equilibrio visual y funcional</span></h3><p><span class="rv">Interfaces lindas que además resuelven, sin fricción.</span></p></div>
+        <div class="principle"><p class="principle-number"><span class="rv">04</span></p><h3><span class="rv">Proceso iterativo</span></h3><p><span class="rv">Pruebo, aprendo y mejoro en ciclos cortos.</span></p></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="about" id="sobre-mi" aria-labelledby="sobre-mi-heading">
+    <div class="about-inner">
+      <div class="about-image"><img src="assets/img/foto-sobre-mi.jpg" alt="Estación de trabajo con notebook y monitor durante un proyecto de diseño" loading="lazy"></div>
+      <div class="about-copy">
+        <p class="eyebrow"><span class="rv">SOBRE MÍ</span></p>
+        <h2 id="sobre-mi-heading" class="rv">Soy UX Designer y lidero proyectos de principio a fin, impulsando ideas hasta <em>convertirlas en productos reales.</em></h2>
+        <p><span class="rv">Tengo más de 6 años de experiencia diseñando productos digitales en startups, agencias de software y compañías de tecnología financiera.</span></p>
+      </div>
+    </div>
+  </section>
+
+  <section class="skills container" id="habilidades" aria-labelledby="habilidades-heading">
+    <h2 id="habilidades-heading" class="rv">Mis <span>habilidades</span></h2>
+    <div class="skill-cards">
+      <div class="skill-card"><h3><span class="rv">Diseño</span></h3><div class="chips"><span class="chip">User Research</span><span class="chip">Wireframing</span><span class="chip">Prototyping</span><span class="chip">Design Systems</span><span class="chip">Interaction Design</span><span class="chip">Accessibility</span><span class="chip">Usability Testing</span></div></div>
+      <div class="skill-card"><h3><span class="rv">Herramientas</span></h3><div class="chips"><span class="chip">Figma</span><span class="chip">Cloude</span><span class="chip">Framer</span><span class="chip">Miro</span><span class="chip">Jira</span><span class="chip">Mural</span><span class="chip">Notion</span><span class="chip">Chat GPT</span><span class="chip">MCP Figma &amp; GPT</span></div></div>
+      <div class="skill-card"><h3><span class="rv">Soft skills</span></h3><div class="chips"><span class="chip">Empatía</span><span class="chip">Resolución creativa</span><span class="chip">Colaboración</span><span class="chip">Comunicación</span><span class="chip">Gestión del tiempo</span><span class="chip">Apertura al feedback</span></div></div>
+    </div>
+  </section>
+
+  <section class="contact container" id="contacto" aria-labelledby="contacto-heading">
+    <div class="contact-box">
+      <h2 id="contacto-heading"><span class="rv">¿Charlamos?</span></h2>
+      <p class="description"><span class="rv">Si tenés un proyecto, una idea o simplemente querés tomar un café virtual, escribime.</span></p>
+      <a href="mailto:analedesmad@gmail.com" class="email-link">analedesmad@gmail.com</a>
+      <div class="contact-actions">
+        <a href="https://www.linkedin.com/in/ana-ledesma-711522136/" target="_blank" rel="noopener noreferrer" class="btn btn-pill">LINKEDIN</a>
+        <a href="https://drive.google.com/file/d/1tWW8eGnDLUhL6wl5Xuhv8yMArGnN94UI/view?usp=sharing" target="_blank" rel="noopener noreferrer" class="btn btn-pill btn-outline">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3v12m0 0 4-4m-4 4-4-4M4 17v3h16v-3"></path></svg>
+          DESCARGAR CV
+        </a>
+      </div>
+    </div>
+  </section>
+</main>
+<footer class="footer container"><p>© 2026 Ana Ledesma — Portfolio de Diseñadora de Producto</p><p>Hecho con cariño desde Argentina</p></footer>
+<a href="#inicio" class="to-top" aria-label="Volver al inicio"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 19V5m0 0-6 6m6-6 6 6"></path></svg></a>
+</div>
+</body>
+</html>

@@ -1,0 +1,191 @@
+<!doctype html>
+<html lang="es-AR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#0f433b">
+<meta name="description" content="Caso de estudio: Clack, plataforma de ventas, caja y stock para comercios.">
+<title>Clack — Plataforma de ventas</title>
+<script>if ('IntersectionObserver' in window && !window.matchMedia('(prefers-reduced-motion: reduce)').matches) document.documentElement.classList.add('rv-ready');</script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bitter:wght@400;500;600;700&family=Hanken+Grotesk:wght@400;500;600;700&family=Josefin+Sans:wght@600;700&display=swap" rel="stylesheet">
+<style>
+:root { --ink:#0f433b; --green:#35645a; --cream:#f7f2eb; --rust:#b9532f; --orange:#ff6734; --coral:#ee8058; --font-heading:'Bitter', Georgia, serif; --font-body:'Hanken Grotesk', Arial, sans-serif; --font-label:'Josefin Sans', sans-serif; }
+*, *::before, *::after { box-sizing:border-box; }
+html { scroll-behavior:smooth; }
+body { margin:0; overflow-x:hidden; color:var(--ink); background:#fff; font-family:var(--font-body); -webkit-font-smoothing:antialiased; }
+a { color:inherit; }
+a:focus-visible { outline:3px solid var(--orange); outline-offset:5px; }
+p { margin:0; }
+.case { color:var(--ink); background:#fff; font:400 18px/28px var(--font-body); }
+.wrap { width:min(1120px, calc(100% - 64px)); margin-inline:auto; }
+.intro { padding:56px 0 84px; }
+.back { display:inline-flex; align-items:center; min-height:44px; font-size:15px; text-decoration:none; color:var(--green); }
+.back:hover { text-decoration:underline; text-underline-offset:4px; }
+.intro h1 { margin:0 0 20px; font:600 64px/1.08 var(--font-heading); letter-spacing:-.96px; }
+.intro p { font-size:20px; line-height:30px; }
+.eyebrow { color:var(--rust); text-transform:uppercase; font:700 14px/1.6 var(--font-label); letter-spacing:1.5px; }
+.title { margin:0 0 8px; font:400 34px/1.2 var(--font-heading); letter-spacing:-.3px; }
+.title strong { font-weight:700; }
+.stripe { height:53px; background:
+  repeating-linear-gradient(90deg,#e4714b 0 13px,transparent 13px 53.3px),
+  linear-gradient(90deg,transparent 0 26.6px,#e4714b 26.6px 39.6px,transparent 39.6px) 0 50% / 53.3px 31px repeat-x,
+  linear-gradient(180deg,#f5cdc7 0 18%,#fff 18% 33%,#f5cdc7 33% 67%,#fff 67% 82%,#f5cdc7 82%); }
+.project { padding:44px 0; }
+.goal-wrap { position:relative; margin-top:80px; }
+.goal-box { padding:44px 32px 40px; background:var(--ink); color:#fff; border-radius:32px; display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:48px; }
+.goal-box .title { margin-bottom:14px; color:var(--coral); }
+.goal-box p + p { margin-top:28px; }
+.goal-sticker { position:absolute; right:-54px; bottom:-108px; width:150px; height:auto; }
+.strategy { padding:80px 0; }
+.strategy .title { margin-bottom:24px; }
+.step { margin-bottom:36px; }
+.step:last-child { margin-bottom:0; }
+.step h3 { margin:0 0 16px; padding:7px 14px; background:#f2f5f7; color:var(--green); font:600 18px/26px var(--font-body); }
+.solution { padding:44px 0 56px; background:var(--cream); }
+.solution .lead { margin-bottom:28px; font-weight:700; }
+.feature { margin-bottom:36px; }
+.feature:last-child { margin-bottom:0; }
+.feature h3 { margin:0 0 8px; font:700 21px/30px var(--font-heading); }
+.shot { display:block; width:100%; height:auto; margin-top:12px; }
+.next { padding:80px 0 72px; }
+.next-inner { border-top:1px solid #c9d0ce; padding-top:40px; display:flex; justify-content:flex-end; }
+.next a { display:inline-flex; align-items:center; min-height:44px; color:var(--orange); font:700 14px/1.6 var(--font-label); letter-spacing:1.5px; text-transform:uppercase; text-decoration:none; }
+.next a:hover { text-decoration:underline; text-underline-offset:4px; }
+@media (max-width:1250px) { .goal-sticker { right:-16px; } }
+@media (max-width:900px) { .goal-box { grid-template-columns:1fr; gap:32px; } }
+@media (max-width:680px) {
+  .case { font-size:17px; line-height:26px; }
+  .wrap { width:calc(100% - 40px); }
+  .intro { padding:28px 0 56px; }
+  .intro h1 { font-size:clamp(38px,10.5vw,52px); }
+  .intro p { font-size:18px; line-height:27px; }
+  .title { font-size:28px; }
+  .goal-wrap { margin-top:56px; }
+  .goal-box { padding:28px 20px; border-radius:24px; }
+  .goal-sticker { right:-4px; bottom:-72px; width:104px; }
+  .strategy { padding:88px 0 56px; }
+  .next { padding:56px 0; }
+  .next-inner { justify-content:flex-start; }
+}
+@media (prefers-reduced-motion:reduce) { *, *::before, *::after { scroll-behavior:auto!important; } }
+
+/* Texto que sube y aparece al entrar en pantalla */
+@property --rv-p { syntax:'<percentage>'; inherits:false; initial-value:130%; }
+.rv { display:block; }
+.rv-ready .rv:not(.rv-in) { opacity:0; }
+.rv-in { -webkit-mask-image:linear-gradient(to bottom,#000 calc(var(--rv-p) - 30%),transparent var(--rv-p)); mask-image:linear-gradient(to bottom,#000 calc(var(--rv-p) - 30%),transparent var(--rv-p)); animation:rv-sube 1.6s cubic-bezier(.16,1,.3,1) both; }
+@keyframes rv-sube { from { opacity:0; transform:translateY(36px); --rv-p:0%; } to { opacity:1; transform:none; --rv-p:130%; } }
+@media print { .rv-ready .rv:not(.rv-in) { opacity:1; } }
+</style>
+<script src="assets/site.js" defer></script>
+</head>
+<body>
+<main class="case">
+  <header class="intro">
+    <div class="wrap">
+      <a class="back" href="index.html">← Volver</a>
+      <h1><span class="rv">Plataforma de ventas: Clack</span></h1>
+      <p><span class="rv">Solución de registros de ventas para comercios.</span></p>
+    </div>
+  </header>
+
+  <div class="stripe" aria-hidden="true"></div>
+
+  <section class="project" aria-labelledby="cl-proyecto">
+    <div class="wrap">
+      <p class="eyebrow"><span class="rv">NUEVA SOLUCIÓN</span></p>
+      <h2 class="title" id="cl-proyecto"><span class="rv"><strong>Proyecto:</strong> Qué resolvimos</span></h2>
+      <p><span class="rv">Diseñamos una plataforma que <strong>centraliza la gestión de ventas, caja y stock</strong>, permitiendo a los comercios administrar sus operaciones diarias desde un mismo lugar.</span></p>
+      <p><span class="rv">La solución integra el registro de ventas, el seguimiento de ingresos y gastos, la apertura y cierre de caja y el control de inventario, con el objetivo de <strong>simplificar las tareas operativas, mejorar la visibilidad del negocio y facilitar la toma de decisiones</strong>.</span></p>
+    </div>
+  </section>
+
+  <div class="stripe" aria-hidden="true"></div>
+
+  <section class="wrap goal-wrap">
+    <div class="goal-box">
+      <div>
+        <h2 class="title"><span class="rv"><strong>Contexto:</strong> Porqué era necesario</span></h2>
+        <p><span class="rv">Clack es una plataforma de gestión comercial diseñada para acompañar las operaciones diarias de los comercios, integrando <strong>ventas, control de caja y gestión de stock en un mismo entorno.</strong></span></p>
+        <p><span class="rv">El desafío del proyecto fue construir una experiencia que permitiera administrar estas tareas de manera simple y conectada, contemplando distintos momentos de la operación: desde el registro de una venta y la actualización del inventario hasta el seguimiento de movimientos y el cierre de caja.</span></p>
+        <p><span class="rv">Buscamos que los comercios pudieran <strong>tener mayor visibilidad y control sobre su actividad diaria</strong>.</span></p>
+      </div>
+      <div>
+        <h2 class="title"><span class="rv"><strong>Mi rol:</strong> Qué lideré</span></h2>
+        <p><span class="rv">Lideré el diseño de la experiencia de usuario de Clack, trabajando en la definición del MVP y en el testeo con usuarios reales.</span></p>
+        <p><span class="rv">Mi foco estuvo en <strong>transformar procesos operativos tradicionales en flujos claros y conectados</strong> contemplando la relación entre ventas, movimientos de caja y control de stock.</span></p>
+        <p><span class="rv">Desde UX, impulsé una experiencia que priorizara la facilidad de uso, la consistencia entre funcionalidades y la claridad de la información necesaria para gestionar el negocio.</span></p>
+      </div>
+    </div>
+    <img class="goal-sticker" src="assets/img/goal.png" alt="" aria-hidden="true">
+  </section>
+
+  <section class="strategy" aria-labelledby="cl-estrategia">
+    <div class="wrap">
+      <h2 class="title" id="cl-estrategia"><span class="rv"><strong>Estrategia:</strong> Cómo abordamos el problema</span></h2>
+      <div class="step">
+        <h3><span class="rv">01. Comprender los procesos del comercio</span></h3>
+        <p><span class="rv">Mapeamos los recorridos operativos para entender cómo se relacionan las tareas diarias del negocio, desde la apertura de caja y el registro de ventas hasta el seguimiento de movimientos y el cierre de jornada.</span></p>
+      </div>
+      <div class="step">
+        <h3><span class="rv">02. Simplificar y conectar las operaciones</span></h3>
+        <p><span class="rv">Organizamos los flujos para que los comercios pudieran gestionar sus ventas, movimientos de dinero e inventario desde un mismo entorno, priorizando la claridad de las acciones y la continuidad entre procesos.</span></p>
+      </div>
+      <div class="step">
+        <h3><span class="rv">03. Facilitar el control y la toma de decisiones</span></h3>
+        <p><span class="rv">Priorizamos la visibilidad de la información operativa, contemplando la consulta de movimientos, el control del efectivo y el seguimiento del stock para ayudar a los comercios a gestionar su actividad cotidiana con mayor confianza.</span></p>
+      </div>
+    </div>
+  </section>
+
+  <section class="solution" aria-labelledby="cl-solucion">
+    <div class="wrap">
+      <p class="eyebrow"><span class="rv">NUEVA PROPUESTA</span></p>
+      <h2 class="title" id="cl-solucion"><span class="rv"><strong>Solución:</strong> Qué cambió</span></h2>
+      <p class="lead"><span class="rv">Una experiencia que conecta la gestión de productos, las ventas y el control de caja en un solo lugar.</span></p>
+
+      <div class="feature">
+        <h3><span class="rv">Gestión centralizada de productos y stock.</span></h3>
+        <p><span class="rv">Diseñamos una vista centralizada del catálogo que permite consultar y administrar productos, precios y disponibilidad de stock desde un mismo lugar.</span></p>
+        <p><span class="rv">La organización por categorías, la búsqueda y el acceso al detalle de cada producto facilitan la localización de información y las tareas habituales de gestión del inventario.</span></p>
+        <img class="shot" src="assets/img/clack-stock.jpg" alt="Pantalla de stock con el catálogo de productos, precios y disponibilidad" loading="lazy">
+      </div>
+
+      <div class="feature">
+        <h3><span class="rv">Configuración de productos y variantes.</span></h3>
+        <p><span class="rv">Creamos un flujo de carga y edición de productos que permite configurar categorías, códigos, precios de costo y venta, variantes de stock, como color y talle.</span></p>
+        <p><span class="rv">La información se organiza en una misma interfaz para facilitar la administración de productos con diferentes características, sin perder visibilidad sobre sus existencias.</span></p>
+        <img class="shot" src="assets/img/clack-detalle.jpg" alt="Panel lateral de detalle del producto con datos, precios y variantes de stock" loading="lazy">
+      </div>
+
+      <div class="feature">
+        <h3><span class="rv">Gestión flexible de precios.</span></h3>
+        <p><span class="rv">Incorporamos una herramienta para crear y administrar listas de precios con descuentos y aumentos, definiendo cómo se aplican, su vigencia y su disponibilidad.</span></p>
+        <p><span class="rv">Esto permite a los comercios adaptar sus condiciones comerciales a distintas situaciones de venta, manteniendo las reglas de precios organizadas y centralizadas.</span></p>
+        <img class="shot" src="assets/img/clack-precios.jpg" alt="Listado de listas de precios con tipo de ajuste, vigencia y visibilidad" loading="lazy">
+      </div>
+
+      <div class="feature">
+        <h3><span class="rv">Registro de ventas y cobros.</span></h3>
+        <p><span class="rv">Diseñamos un flujo de cobro que permite seleccionar medios de pago, aplicar descuentos y revisar el importe final antes de confirmar una venta.</span></p>
+        <p><span class="rv">La experiencia prioriza la claridad de los montos y las acciones para facilitar el registro de operaciones durante la atención al cliente.</span></p>
+        <img class="shot" src="assets/img/clack-cobro.jpg" alt="Modal de cobro de venta con medio de pago, descuento y monto total" loading="lazy">
+      </div>
+
+      <div class="feature">
+        <h3><span class="rv">Control y seguimiento de caja.</span></h3>
+        <p><span class="rv">Centralizamos la información de caja en una vista que permite consultar ingresos, egresos, monto total y movimientos del turno, con el detalle de las operaciones registradas.</span></p>
+        <p><span class="rv">Esta solución facilita el seguimiento del dinero durante la jornada y brinda al comercio información para revisar sus movimientos y realizar el cierre de caja con mayor control.</span></p>
+        <img class="shot" src="assets/img/clack-caja.jpg" alt="Vista de caja del turno con ingresos, retiros, monto total y tabla de movimientos" loading="lazy">
+      </div>
+    </div>
+  </section>
+
+  <nav class="next wrap" aria-label="Más proyectos">
+    <div class="next-inner"><a href="index.html">Ver todos los proyectos</a></div>
+  </nav>
+</main>
+</body>
+</html>

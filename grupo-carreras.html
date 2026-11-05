@@ -1,0 +1,188 @@
+<!doctype html>
+<html lang="es-AR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#0f433b">
+<meta name="description" content="Caso de estudio: app iOS para conductores de Grupo Carreras.">
+<title>Grupo Carreras — App iOS para conductores</title>
+<script>if ('IntersectionObserver' in window && !window.matchMedia('(prefers-reduced-motion: reduce)').matches) document.documentElement.classList.add('rv-ready');</script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bitter:wght@400;500;600;700&family=Hanken+Grotesk:wght@400;500;600;700&family=Josefin+Sans:wght@600;700&display=swap" rel="stylesheet">
+<style>
+:root { --ink:#122d3a; --teal:#0f433b; --rust:#b9532f; --orange:#ff6734; --coral:#ee8058; --mist:#c6d3db; --font-heading:'Bitter', Georgia, serif; --font-body:'Hanken Grotesk', Arial, sans-serif; --font-label:'Josefin Sans', sans-serif; }
+*, *::before, *::after { box-sizing:border-box; }
+html { scroll-behavior:smooth; }
+body { margin:0; overflow-x:hidden; color:var(--ink); background:#fff; font-family:var(--font-body); -webkit-font-smoothing:antialiased; }
+a { color:inherit; }
+a:focus-visible { outline:3px solid var(--orange); outline-offset:5px; }
+p { margin:0; }
+.case { color:var(--ink); background:#fff; font:400 18px/28px var(--font-body); }
+.wrap { width:min(1120px, calc(100% - 64px)); margin-inline:auto; }
+.intro { padding:56px 0 84px; }
+.back { display:inline-flex; align-items:center; min-height:44px; font-size:15px; text-decoration:none; color:#35645a; }
+.back:hover { text-decoration:underline; text-underline-offset:4px; }
+.intro h1 { margin:0 0 20px; font:600 64px/1.08 var(--font-heading); letter-spacing:-.96px; }
+.intro p { font-size:20px; line-height:30px; }
+.eyebrow { color:var(--rust); text-transform:uppercase; font:700 14px/1.6 var(--font-label); letter-spacing:1.5px; }
+.title { margin:0 0 8px; font:400 34px/1.2 var(--font-heading); letter-spacing:-.3px; }
+.title strong { font-weight:700; }
+.stripe { height:53px; background:
+  repeating-linear-gradient(90deg,#e4714b 0 13px,transparent 13px 53.3px),
+  linear-gradient(90deg,transparent 0 26.6px,#e4714b 26.6px 39.6px,transparent 39.6px) 0 50% / 53.3px 31px repeat-x,
+  linear-gradient(180deg,#f5cdc7 0 18%,#fff 18% 33%,#f5cdc7 33% 67%,#fff 67% 82%,#f5cdc7 82%); }
+.project { padding:44px 0; color:var(--teal); }
+.project .title { color:var(--teal); }
+.goal-box { margin-top:80px; padding:44px 32px 40px; background:var(--ink); color:#fff; border-radius:32px; display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:48px; }
+.goal-box .title { margin-bottom:14px; color:var(--coral); }
+.goal-box p + p { margin-top:28px; }
+.solution { margin-top:80px; padding:44px 0 42px; background:var(--mist); }
+.solution .eyebrow { color:var(--ink); }
+.solution .lead { margin-bottom:32px; font-weight:700; }
+.feature { display:grid; grid-template-columns:minmax(0,702fr) minmax(0,352fr); gap:64px; align-items:start; margin-bottom:32px; }
+.feature:last-child { margin-bottom:0; }
+.phones { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:20px; }
+.phones img { display:block; width:100%; height:auto; border-radius:12% / 7.6%; }
+.feature h3 { margin:0 0 8px; font:700 21px/24px var(--font-heading); }
+.feature p + p { margin-top:28px; }
+.next { padding:80px 0 72px; }
+.next-inner { border-top:1px solid var(--mist); padding-top:40px; display:flex; justify-content:flex-end; }
+.next a { display:inline-flex; align-items:center; min-height:44px; color:var(--orange); font:700 14px/1.6 var(--font-label); letter-spacing:1.5px; text-transform:uppercase; text-decoration:none; }
+.next a:hover { text-decoration:underline; text-underline-offset:4px; }
+@media (max-width:1000px) {
+  .feature { grid-template-columns:1fr; gap:24px; margin-bottom:48px; }
+  .feature > div:last-child { order:-1; }
+  .feature p + p { margin-top:16px; }
+}
+@media (max-width:900px) { .goal-box { grid-template-columns:1fr; gap:32px; } }
+@media (max-width:680px) {
+  .case { font-size:17px; line-height:26px; }
+  .wrap { width:calc(100% - 40px); }
+  .intro { padding:28px 0 56px; }
+  .intro h1 { font-size:clamp(38px,10.5vw,52px); }
+  .intro p { font-size:18px; line-height:27px; }
+  .title { font-size:28px; }
+  .goal-box { margin-top:56px; padding:28px 20px; border-radius:24px; }
+  .solution { margin-top:56px; }
+  .phones { gap:12px; }
+  .next { padding:56px 0; }
+  .next-inner { justify-content:flex-start; }
+}
+@media (prefers-reduced-motion:reduce) { *, *::before, *::after { scroll-behavior:auto!important; } }
+
+/* Texto que sube y aparece al entrar en pantalla */
+@property --rv-p { syntax:'<percentage>'; inherits:false; initial-value:130%; }
+.rv { display:block; }
+.rv-ready .rv:not(.rv-in) { opacity:0; }
+.rv-in { -webkit-mask-image:linear-gradient(to bottom,#000 calc(var(--rv-p) - 30%),transparent var(--rv-p)); mask-image:linear-gradient(to bottom,#000 calc(var(--rv-p) - 30%),transparent var(--rv-p)); animation:rv-sube 1.6s cubic-bezier(.16,1,.3,1) both; }
+@keyframes rv-sube { from { opacity:0; transform:translateY(36px); --rv-p:0%; } to { opacity:1; transform:none; --rv-p:130%; } }
+@media print { .rv-ready .rv:not(.rv-in) { opacity:1; } }
+</style>
+<script src="assets/site.js" defer></script>
+</head>
+<body>
+<main class="case">
+  <header class="intro">
+    <div class="wrap">
+      <a class="back" href="index.html">← Volver</a>
+      <h1><span class="rv">App IOS para conductores</span></h1>
+      <p><span class="rv">App nativa para la logistica de mercancia en el norte de España: Zaragoza</span></p>
+    </div>
+  </header>
+
+  <div class="stripe" aria-hidden="true"></div>
+
+  <section class="project" aria-labelledby="gc-proyecto">
+    <div class="wrap">
+      <p class="eyebrow"><span class="rv">NUEVA SOLUCIÓN</span></p>
+      <h2 class="title" id="gc-proyecto"><span class="rv"><strong>Proyecto:</strong> Qué resolvimos</span></h2>
+      <p><span class="rv">Transformamos un proceso de trabajo manual, basado en documentación en papel, en una experiencia digital a través de una aplicación móvil nativa para conductores de transporte de mercancías.</span></p>
+      <p><span class="rv">La solución permitió <strong>digitalizar las tareas operativas que los choferes realizaban durante sus rutas desde Zaragoza</strong> hacia distintos destinos de España, centralizando la gestión en una única herramienta.</span></p>
+      <p><span class="rv">El desafío no era simplemente sustituir el papel por pantallas, <strong>sino simplificar los procesos y adaptar la experiencia digital a las necesidades reales de los conductores en su día a día.</strong></span></p>
+    </div>
+  </section>
+
+  <div class="stripe" aria-hidden="true"></div>
+
+  <section class="wrap">
+    <div class="goal-box">
+      <div>
+        <h2 class="title"><span class="rv"><strong>Contexto:</strong> Porqué era necesario</span></h2>
+        <p><span class="rv">La gestión del transporte de mercancías se realizaba mediante procesos manuales y documentación en papel, lo que dificultaba el acceso ágil a la información y el seguimiento de las operaciones.</span></p>
+        <p><span class="rv">Esta forma de trabajo limitaba la visibilidad de los equipos administrativos y de las distintas áreas involucradas, que necesitaban información actualizada para coordinar las operaciones, calcular los tiempos de transporte y estimar los gastos de combustible.</span></p>
+        <p><span class="rv"><strong>El desafío era conectar a los conductores con los equipos de gestión a través de una solución digital, que permitiera centralizar la información, optimizar la coordinación entre las áreas y facilitar el seguimiento de las mercancías en tiempo real.</strong></span></p>
+      </div>
+      <div>
+        <h2 class="title"><span class="rv"><strong>Mi rol:</strong> Qué lideré</span></h2>
+        <p><span class="rv">Participé en el diseño de una aplicación móvil nativa, partiendo de los requerimientos definidos para el MVP.</span></p>
+        <p><span class="rv">Mi trabajo abarcó tanto la definición de la experiencia de usuario como la construcción de una base de diseño escalable.</span></p>
+        <p><span class="rv">Colaboré en la definición de los flujos de usuario, buscando trasladar los procesos operativos manuales a una experiencia digital clara y eficiente para los conductores.</span></p>
+        <p><span class="rv">En paralelo, diseñé y estructuré un Design System, estableciendo componentes y patrones reutilizables para garantizar la consistencia de la interfaz y facilitar su evolución.</span></p>
+        <p><span class="rv">Además, desarrollé la documentación del sistema en Zeroheight, con el objetivo de alinear los criterios de diseño, facilitar la colaboración con los equipos de desarrollo y favorecer la escalabilidad del producto.</span></p>
+      </div>
+    </div>
+  </section>
+
+  <section class="solution" aria-labelledby="gc-solucion">
+    <div class="wrap">
+      <p class="eyebrow"><span class="rv">NUEVA PROPUESTA</span></p>
+      <h2 class="title" id="gc-solucion"><span class="rv"><strong>Solución:</strong> Qué cambió</span></h2>
+      <p class="lead"><span class="rv">Del papel a una experiencia digital que conecta a conductores y equipos de gestión.</span></p>
+
+      <div class="feature">
+        <div class="phones">
+          <img src="assets/img/gc-inicio-a.jpg" alt="Pantalla de bienvenida de la app con sus principales beneficios" loading="lazy">
+          <img src="assets/img/gc-inicio-b.jpg" alt="Pantalla de inicio con planning, documentos y vehículo" loading="lazy">
+        </div>
+        <div>
+          <h3><span class="rv">Un punto de acceso para toda la jornada</span></h3>
+          <p><span class="rv">Diseñamos una pantalla de inicio que reúne las principales herramientas que el conductor necesita durante su jornada: planificación de viajes, gestión documental, registro de gastos y repostajes.</span></p>
+          <p><span class="rv">La organización de la información permite acceder directamente a las tareas más relevantes, reduciendo la necesidad de navegar entre diferentes secciones.</span></p>
+        </div>
+      </div>
+
+      <div class="feature">
+        <div class="phones">
+          <img src="assets/img/gc-viajes-a.jpg" alt="Viaje en curso con la ruta, la carga asignada y sus requisitos" loading="lazy">
+          <img src="assets/img/gc-viajes-b.jpg" alt="Listado de cargas finalizadas con acceso a albaranes" loading="lazy">
+        </div>
+        <div>
+          <h3><span class="rv">Gestión y seguimiento de viajes</span></h3>
+          <p><span class="rv">Digitalizamos la consulta y gestión de los viajes, centralizando la información de las rutas, las cargas asignadas, los requisitos de transporte y los albaranes.</span></p>
+          <p><span class="rv">El conductor puede consultar el estado de cada carga y acceder a la documentación necesaria desde un mismo lugar, facilitando la coordinación y el seguimiento de las operaciones.</span></p>
+        </div>
+      </div>
+
+      <div class="feature">
+        <div class="phones">
+          <img src="assets/img/gc-repostaje-a.jpg" alt="Formulario de carga de datos del repostaje" loading="lazy">
+          <img src="assets/img/gc-repostaje-b.jpg" alt="Confirmación antes de enviar el repostaje" loading="lazy">
+        </div>
+        <div>
+          <h3><span class="rv">Registro digital de repostajes</span></h3>
+          <p><span class="rv">Transformamos el registro manual de combustible en un flujo digital que permite introducir los litros repostados, el tipo de combustible, la tarjeta utilizada, el número de ticket y el importe.</span></p>
+          <p><span class="rv">Incorporamos una instancia de confirmación antes del envío para que el conductor pueda verificar la información registrada, facilitando su posterior gestión administrativa.</span></p>
+        </div>
+      </div>
+
+      <div class="feature">
+        <div class="phones">
+          <img src="assets/img/gc-informe-a.jpg" alt="Informe de conducción con nota total, kilómetros, ralentí y consumo" loading="lazy">
+          <img src="assets/img/gc-informe-b.jpg" alt="Gráfico mensual de uso par motor y resumen de la evolución" loading="lazy">
+        </div>
+        <div>
+          <h3><span class="rv">Visibilidad sobre el rendimiento de conducción</span></h3>
+          <p><span class="rv">Incorporamos un espacio para consultar indicadores de conducción, como los kilómetros recorridos, el consumo de combustible y el tiempo en ralentí.</span></p>
+          <p><span class="rv">A través de resúmenes y gráficos de evolución, el conductor puede visualizar su desempeño y consultar información que antes resultaba más difícil de reunir y analizar.</span></p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <nav class="next wrap" aria-label="Más proyectos">
+    <div class="next-inner"><a href="index.html">Ver todos los proyectos</a></div>
+  </nav>
+</main>
+</body>
+</html>
